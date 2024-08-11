@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - RSC Student Bookshop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>RSC Student Bookshop</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="promotions.html">Promotions</a>
+        <!-- Contact link is hidden -->
+        <!-- <a href="contact.html">Contact</a> -->
+        <a href="admin.html">Admin</a>
+    </nav>
+
+    <div id="product-detail" class="product-detail-section">
+        <div class="product-detail-container">
+            <div class="product-image">
+                <img id="product-image" src="" alt="Product Image">
+            </div>
+            <div class="product-info">
+                <h2 id="product-name">Product Name</h2>
+                <p id="product-price" class="product-price">$0.00</p>
+                <p id="product-description" class="product-description">Detailed information about the product goes here.</p>
+                
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1">
+                
+                <div class="product-buttons">
+                    <button id="order-button">Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 RSC Student Bookshop. All rights reserved.</p>
+    </footer>
+
+    <script src="products.js"></script>
+    <script>
+        // Extract the product name from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('name');
+
+        // Find the product by name
+        const product = products.find(p => p.name === productName);
+
+        // Update the page content with the product details
+        if (product) {
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-price').textContent = product.price;
+            document.getElementById('product-description').textContent = product.description;
+            document.getElementById('product-image').src = product.image;
+            document.getElementById('product-image').alt = product.name;
+        } else {
+            // Handle the case where the product isn't found
+            document.getElementById('product-detail').innerHTML = "<p>Product not found.</p>";
+        }
+
+        document.getElementById('order-button').addEventListener('click', function() {
+            var quantity = document.getElementById('quantity').value;
+            alert('You have ordered ' + quantity + ' of this product.');
+            
+            // Redirect to the contact page after placing the order
+            window.location.href = 'contact.html';
+        });
+    </script>
+</body>
+</html>

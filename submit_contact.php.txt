@@ -1,0 +1,20 @@
+<?php
+require 'vendor/autoload.php'; // If using Composer for reCAPTCHA
+
+use ReCaptcha\ReCaptcha;
+
+$recaptcha = new ReCaptcha('YOUR_SECRET_KEY');
+$response = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+
+if ($response->isSuccess()) {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+
+    // Process the contact form data (e.g., send an email)
+    // Example: mail($to, $subject, $message, $headers);
+    echo 'Message sent successfully!';
+} else {
+    echo 'reCAPTCHA verification failed. Please try again.';
+}
+?>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - RSC Student Bookshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+            if (!passwordRegex.test(password)) {
+                alert('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one numeral.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>RSC Student Bookshop</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="promotions.html">Promotions</a>
+        <a href="admin.html">Admin</a>
+    </nav>
+    <div id="admin" class="admin-section">
+        <h2>Admin Login</h2>
+        <form action="admin_login.php" method="post" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 RSC Student Bookshop. All rights reserved.</p>
+    </footer>
+</body>
+</html>

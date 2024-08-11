@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSC Student Bookshop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <img src="https://i.pinimg.com/originals/da/08/2c/da082c176aea0f8e5ab294ff7a0f90d1.gif" alt="Loading...">
+    </div>
+    <header>
+        <h1>RSC Student Bookshop</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="promotions.html">Promotions</a>
+        <a href="#admin">Admin</a>
+    </nav>
+    <div id="home" class="slideshow-container">
+        <div class="slides active">
+            <img src="https://i.postimg.cc/dJqd2zZ0/Whats-App-Image-2024-07-25-at-17-37-57-5c66a9ee.jpg" style="width:100%">
+        </div>
+        <div class="slides">
+            <img src="https://i.postimg.cc/KzcVNf6z/Whats-App-Image-2024-07-25-at-17-37-56-e1395152.jpg" style="width:100%">
+        </div>
+        <div class="slides">
+            <img src="https://i.postimg.cc/fL47WRKh/Whats-App-Image-2024-07-25-at-17-37-57-d969ad22.jpg" style="width:100%">
+        </div>
+    </div>
+    <div id="shop-preview" class="shop-section">
+    <h2>Shop Preview</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="https://belairstore.com/wp-content/uploads/2020/09/04003200201.webp" alt="Product 1">
+            <h3>Chocolate Digestive</h3>
+            <p>$3.00</p>
+        </div>
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1TvxgqVNSlQjamv-foDyGPsV_rqBfSAkojg&s" alt="Product 2">
+            <h3>Caramel</h3>
+            <p>$5.00</p>
+        </div>
+        <div class="product-card">
+            <img src="https://www.fittstmarket.com/web/image/product.template/21655/image_1920?unique=0483f2d" alt="Product 3">
+            <h3>Kiss Holsum Danish's</h3>
+            <p>$6.00</p>
+        </div>
+    </div>
+    <div class="shop-button-container">
+        <a href="shop.html" class="shop-button">See More Products</a>
+    </div>
+</div>
+    </div>
+    <div id="meet-team" class="team-section">
+        <h2>Meet your Bookshop Attendants</h2>
+        <div class="team-member">
+            <img src="https://i.postimg.cc/cLHy4Y8T/20240224-135323.avif" alt="Attendant 1">
+            <div class="team-member-info">
+                <h3>J'Leise Sealey</h3>
+                <p>Meet J'Leise, welcoming you to the bookshop with a kind smile</p>
+            </div>
+        </div>
+        <div class="team-member">
+            <img src="https://i.postimg.cc/C1DVpgfg/Whats-App-Image-2024-08-09-at-18-04-00-04f87b14.jpg" alt="Attendant 2">
+            <div class="team-member-info">
+                <h3>Gabriel Millet</h3>
+                <p>Meet Gabriel Millet your reliable bookshop keeper</p>
+            </div>
+        </div>
+        </main>
+    <footer>
+        <p>&copy; 2024 RSC Student Bookshop. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loadingScreen = document.getElementById('loading-screen');
+            if (performance.navigation.type == 1) {
+                setTimeout(function() {
+                    loadingScreen.classList.add('hidden');
+                }, 5000);
+            } else {
+                loadingScreen.classList.add('hidden');
+            }
+
+            let slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+                let slides = document.getElementsByClassName("slides");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";  
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {slideIndex = 1}    
+                slides[slideIndex-1].style.display = "block";  
+                setTimeout(showSlides, 4000); // Change image every 4 seconds
+            }
+        });
+    </script>
+</body>
+</html>

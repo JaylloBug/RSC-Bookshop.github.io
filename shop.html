@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - RSC Student Bookshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="products.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>RSC Student Bookshop - Shop</h1>
+    </header>
+    <nav>
+        <a href="index.html#home">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="promotions.html">Promotions</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html">Admin</a>
+    </nav>
+
+    <div class="filters-section">
+        <input type="text" id="search-bar" placeholder="Search for products...">
+        <select id="category-filter">
+            <option value="">All Categories</option>
+            <option value="snacks">Snacks</option>
+            <option value="drinks">Drinks</option>
+            <option value="books">Books</option>
+            <option value="merch">Merchandise</option>
+        </select>
+    </div>
+
+    <div id="products-container" class="shop-section">
+        <h2>Our Products</h2>
+        <div id="product-list" class="products-grid">
+            <!-- Existing product cards will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <div id="no-results-message" class="no-results hidden">
+        <p>Sorry, that item isn't available right now :(</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 RSC Student Bookshop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchBar = document.getElementById('search-bar');
+            const categoryFilter = document.getElementById('category-filter');
+            const productList = document.getElementById('product-list');
+            const noResultsMessage = document.getElementById('no-results-message');
+
+            function renderProducts(products) {
+                productList.innerHTML = '';
+                if (products.length === 0) {
+                    noResultsMessage.classList.remove('hidden');
+                } else {
+                    noResultsMessage.classList.add('hidden');
+                    products.forEach(product => {
+                        const productCard = `
+                            <div class="product-card">
+                                <a href="product.html?name=${encodeURIComponent(product.name)}">
+                                    <img src="${product.image}" alt="${product.name}">
+                                    <h3>${product.name}</h3>
+                                    <p>${product.price}</p>
+                                </a>
+                            </div>
+                        `;
+                        productList.innerHTML += productCard;
+                    });
+                }
+            }
+
+            function filterProducts() {
+                const searchQuery = searchBar.value.toLowerCase();
+                const selectedCategory = categoryFilter.value;
+
+                const filteredProducts = products.filter(product => {
+                    const matchesSearch = product.name.toLowerCase().includes(searchQuery);
+                    const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
+                    return matchesSearch && matchesCategory;
+                });
+
+                renderProducts(filteredProducts);
+            }
+
+            searchBar.addEventListener('input', filterProducts);
+            categoryFilter.addEventListener('change', filterProducts);
+
+            // Initial render of products
+            renderProducts(products);
+        });
+    </script>
+</body>
+</html>

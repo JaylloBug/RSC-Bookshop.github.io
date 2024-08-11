@@ -1,0 +1,18 @@
+<?php
+session_start();
+
+// Hardcoded example, replace with your database check
+$validUsername = 'admin';
+$validPasswordHash = password_hash('YourSecurePassword123', PASSWORD_DEFAULT);
+
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+if ($username === $validUsername && password_verify($password, $validPasswordHash)) {
+    $_SESSION['loggedin'] = true;
+    header('Location: admin_dashboard.html'); // Redirect to admin dashboard
+    exit();
+} else {
+    echo 'Invalid username or password.';
+}
+?>
